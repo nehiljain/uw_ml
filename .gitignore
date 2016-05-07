@@ -66,3 +66,6 @@ target/
 #data
 foundation/data
 data
+*.csv
+*.gl
+
