@@ -5,7 +5,7 @@
 # 
 # Decision Tree
 
-# In[1]:
+# In[45]:
 
 
 import sys, os
@@ -21,39 +21,41 @@ import json
 import string
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import linear_model
+from sklearn.model_selection import cross_val_score
+from sklearn.tree import DecisionTreeClassifier
 
 
-# In[9]:
+# In[27]:
 
 
 loan_data = pd.read_csv('../data/lending-club-data.csv')
 
 
-# In[10]:
+# In[28]:
 
 
 loan_data.shape
 
 
-# In[11]:
+# In[29]:
 
 
 loan_data.head()
 
 
-# In[12]:
+# In[30]:
 
 
 loan_data['safe_loans'] = np.where(loan_data.bad_loans == 0, 1, -1)
 
 
-# In[13]:
+# In[31]:
 
 
 loan_data.safe_loans.value_counts()
 
 
-# In[14]:
+# In[32]:
 
 
 features = ['grade',                     # grade of the loan
@@ -76,30 +78,30 @@ target = 'safe_loans'                    # prediction target (y) (+1 means safe,
 loan_data = loan_data[features + [target]]
 
 
-# In[15]:
+# In[33]:
 
 
 train_indexes = pd.read_json('../data/module-5-assignment-1-train-idx.json')
 val_indexes = pd.read_json('../data/module-5-assignment-1-validation-idx.json')
 
 
-# In[16]:
+# In[34]:
 
 
 train_data = loan_data.iloc[train_indexes[0].tolist()]
 val_data = loan_data.iloc[val_indexes[0].tolist()]
 
 
-# In[19]:
+# In[35]:
 
 
-safe_loans_raw = loan_data[loan_data[target] == +1]
-risky_loans_raw = loan_data[loan_data[target] == -1]
+safe_loans_raw = train_data[train_data[target] == +1]
+risky_loans_raw = train_data[train_data[target] == -1]
 print("Number of safe loans  : %s" % len(safe_loans_raw))
 print("Number of risky loans : %s" % len(risky_loans_raw))
 
 
-# In[21]:
+# In[36]:
 
 
 # Since there are fewer risky loans than safe loans, find the ratio of the sizes
@@ -108,15 +110,54 @@ percentage = len(risky_loans_raw)/float(len(safe_loans_raw))
 print(percentage)
 
 
-# In[25]:
+# In[37]:
 
 
 risky_loans = risky_loans_raw
 safe_loans = safe_loans_raw.sample(len(risky_loans_raw), random_state=1)
 
 
-# In[27]:
+# In[38]:
 
 
-loans_data
+loans_df = pd.concat([risky_loans, safe_loans])
+
+
+# In[39]:
+
+
+loans_df.safe_loans.value_counts()
+
+
+# In[40]:
+
+
+loans_df.columns.values
+
+
+# In[41]:
+
+
+categorical_variables = []
+for feat_name, feat_type in zip(loans_df.columns.values, loans_df.dtypes):
+    if feat_type == np.dtype('object'):
+        categorical_variables.append(feat_name)
+
+
+# In[42]:
+
+
+categorical_variables
+
+
+# In[43]:
+
+
+loans_df = pd.get_dummies(loans_df, columns=categorical_variables)
+
+
+# In[44]:
+
+
+loans_df.head()
 
