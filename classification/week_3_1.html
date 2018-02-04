@@ -11782,7 +11782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
@@ -11799,7 +11799,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">cross_val_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_graphviz</span>
 </pre></div>
 
 </div>
@@ -11809,7 +11809,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/lending-club-data.csv&#39;</span><span class="p">)</span>
@@ -11841,7 +11841,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">shape</span>
@@ -11857,7 +11857,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -11874,7 +11874,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -11890,7 +11890,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -12071,7 +12071,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="p">[</span><span class="s1">&#39;safe_loans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">loan_data</span><span class="o">.</span><span class="n">bad_loans</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12084,7 +12084,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">safe_loans</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -12100,7 +12100,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[31]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -12119,7 +12119,7 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">,</span>                     <span class="c1"># grade of the loan</span>
@@ -12149,7 +12149,7 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_indexes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;../data/module-5-assignment-1-train-idx.json&#39;</span><span class="p">)</span>
@@ -12163,7 +12163,7 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">loan_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
@@ -12177,7 +12177,7 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">safe_loans_raw</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">train_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">==</span> <span class="o">+</span><span class="mi">1</span><span class="p">]</span>
@@ -12212,7 +12212,7 @@ Number of risky loans : 18476
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Since there are fewer risky loans than safe loans, find the ratio of the sizes</span>
@@ -12246,7 +12246,7 @@ Number of risky loans : 18476
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">risky_loans</span> <span class="o">=</span> <span class="n">risky_loans_raw</span>
@@ -12260,23 +12260,10 @@ Number of risky loans : 18476
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">risky_loans</span><span class="p">,</span> <span class="n">safe_loans</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">safe_loans</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">risky_loans</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 
 </div>
@@ -12289,42 +12276,7 @@ Number of risky loans : 18476
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[39]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>-1    18476
- 1    18476
-Name: safe_loans, dtype: int64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[40]:</div>
+<div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -12344,26 +12296,10 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">categorical_variables</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">feat_name</span><span class="p">,</span> <span class="n">feat_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">loans_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">loans_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">feat_type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
-        <span class="n">categorical_variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feat_name</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">categorical_variables</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">safe_loans</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 
 </div>
@@ -12376,13 +12312,16 @@ Name: safe_loans, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[42]:</div>
+<div class="prompt output_prompt">Out[14]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;grade&#39;, &#39;sub_grade&#39;, &#39;home_ownership&#39;, &#39;purpose&#39;, &#39;term&#39;]</pre>
+<pre>array([&#39;grade&#39;, &#39;sub_grade&#39;, &#39;short_emp&#39;, &#39;emp_length_num&#39;,
+       &#39;home_ownership&#39;, &#39;dti&#39;, &#39;purpose&#39;, &#39;term&#39;, &#39;last_delinq_none&#39;,
+       &#39;last_major_derog_none&#39;, &#39;revol_util&#39;, &#39;total_rec_late_fee&#39;,
+       &#39;safe_loans&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -12393,10 +12332,10 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">loans_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_variables</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">risky_loans</span><span class="p">,</span> <span class="n">safe_loans</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12406,10 +12345,10 @@ Name: safe_loans, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">safe_loans</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12422,7 +12361,178 @@ Name: safe_loans, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[44]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1    18476
+ 1    18476
+Name: safe_loans, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;grade&#39;, &#39;sub_grade&#39;, &#39;short_emp&#39;, &#39;emp_length_num&#39;,
+       &#39;home_ownership&#39;, &#39;dti&#39;, &#39;purpose&#39;, &#39;term&#39;, &#39;last_delinq_none&#39;,
+       &#39;last_major_derog_none&#39;, &#39;revol_util&#39;, &#39;total_rec_late_fee&#39;,
+       &#39;safe_loans&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">encode_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add column to df with integers for the target.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    df -- pandas DataFrame.</span>
+<span class="sd">    target_column -- column to map to int, producing</span>
+<span class="sd">                     new Target column.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df_mod -- modified DataFrame.</span>
+<span class="sd">    targets -- list of target names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df_mod</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="n">df_mod</span><span class="p">[</span><span class="n">target_column</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="n">map_to_int</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">targets</span><span class="p">)}</span>
+    <span class="n">df_mod</span><span class="p">[</span><span class="n">target_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mod</span><span class="p">[</span><span class="n">target_column</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">map_to_int</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">df_mod</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_one_hot_encoding_for_categorical_variables</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">categorical_variables</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">feat_name</span><span class="p">,</span> <span class="n">feat_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">feat_type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
+            <span class="n">categorical_variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feat_name</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">encode_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">feat_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span> <span class="o">=</span> <span class="n">get_one_hot_encoding_for_categorical_variables</span><span class="p">(</span><span class="n">loans_df</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;grade&#39;, &#39;sub_grade&#39;, &#39;short_emp&#39;, &#39;emp_length_num&#39;,
+       &#39;home_ownership&#39;, &#39;dti&#39;, &#39;purpose&#39;, &#39;term&#39;, &#39;last_delinq_none&#39;,
+       &#39;last_major_derog_none&#39;, &#39;revol_util&#39;, &#39;total_rec_late_fee&#39;,
+       &#39;safe_loans&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">loans_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -12445,154 +12555,2074 @@ Name: safe_loans, dtype: int64</pre>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>sub_grade</th>
       <th>short_emp</th>
       <th>emp_length_num</th>
+      <th>home_ownership</th>
       <th>dti</th>
+      <th>purpose</th>
+      <th>term</th>
       <th>last_delinq_none</th>
       <th>last_major_derog_none</th>
       <th>revol_util</th>
       <th>total_rec_late_fee</th>
       <th>safe_loans</th>
-      <th>grade_A</th>
-      <th>grade_B</th>
-      <th>...</th>
-      <th>purpose_house</th>
-      <th>purpose_major_purchase</th>
-      <th>purpose_medical</th>
-      <th>purpose_moving</th>
-      <th>purpose_other</th>
-      <th>purpose_small_business</th>
-      <th>purpose_vacation</th>
-      <th>purpose_wedding</th>
-      <th>term_ 36 months</th>
-      <th>term_ 60 months</th>
+      <th>grade_0</th>
+      <th>grade_1</th>
+      <th>grade_2</th>
+      <th>grade_3</th>
+      <th>grade_4</th>
+      <th>grade_5</th>
+      <th>grade_6</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
+      <td>0</td>
       <td>1.00</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
       <td>9.4</td>
       <td>0.0</td>
       <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>6</th>
+      <td>1</td>
       <td>0</td>
       <td>5</td>
+      <td>1</td>
       <td>5.55</td>
+      <td>1</td>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
       <td>32.6</td>
       <td>0.0</td>
       <td>-1</td>
       <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>7</th>
+      <td>2</td>
       <td>1</td>
       <td>1</td>
+      <td>0</td>
       <td>18.08</td>
+      <td>2</td>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
       <td>36.5</td>
       <td>0.0</td>
       <td>-1</td>
       <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>10</th>
+      <td>3</td>
       <td>1</td>
       <td>1</td>
+      <td>0</td>
       <td>10.08</td>
+      <td>3</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>91.7</td>
       <td>0.0</td>
       <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
     </tr>
     <tr>
       <th>12</th>
+      <td>4</td>
       <td>0</td>
       <td>4</td>
+      <td>0</td>
       <td>7.06</td>
+      <td>2</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>55.5</td>
       <td>0.0</td>
       <td>-1</td>
       <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 68 columns</p>
 </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;grade&#39;, &#39;sub_grade&#39;, &#39;short_emp&#39;, &#39;emp_length_num&#39;,
+       &#39;home_ownership&#39;, &#39;dti&#39;, &#39;purpose&#39;, &#39;term&#39;, &#39;last_delinq_none&#39;,
+       &#39;last_major_derog_none&#39;, &#39;revol_util&#39;, &#39;total_rec_late_fee&#39;,
+       &#39;safe_loans&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">loans_df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">loans_df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;grade&#39;,
+ &#39;sub_grade&#39;,
+ &#39;short_emp&#39;,
+ &#39;emp_length_num&#39;,
+ &#39;home_ownership&#39;,
+ &#39;dti&#39;,
+ &#39;purpose&#39;,
+ &#39;term&#39;,
+ &#39;last_delinq_none&#39;,
+ &#39;last_major_derog_none&#39;,
+ &#39;revol_util&#39;,
+ &#39;total_rec_late_fee&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">big_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">big_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[67]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DecisionTreeClassifier(class_weight=None, criterion=&#39;gini&#39;, max_depth=10,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, presort=False, random_state=1,
+            splitter=&#39;best&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decision_tree_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">decision_tree_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DecisionTreeClassifier(class_weight=None, criterion=&#39;gini&#39;, max_depth=6,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, presort=False, random_state=1,
+            splitter=&#39;best&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">small_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DecisionTreeClassifier(class_weight=None, criterion=&#39;gini&#39;, max_depth=2,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, presort=False, random_state=1,
+            splitter=&#39;best&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">val_data</span> <span class="o">=</span> <span class="n">get_one_hot_encoding_for_categorical_variables</span><span class="p">(</span><span class="n">val_data</span><span class="p">)</span>
+<span class="n">validation_safe_loans</span> <span class="o">=</span> <span class="n">val_data</span><span class="p">[</span><span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">validation_risky_loans</span> <span class="o">=</span> <span class="n">val_data</span><span class="p">[</span><span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">validation_safe_loans</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[35]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>grade</th>
+      <th>sub_grade</th>
+      <th>short_emp</th>
+      <th>emp_length_num</th>
+      <th>home_ownership</th>
+      <th>dti</th>
+      <th>purpose</th>
+      <th>term</th>
+      <th>last_delinq_none</th>
+      <th>last_major_derog_none</th>
+      <th>revol_util</th>
+      <th>total_rec_late_fee</th>
+      <th>safe_loans</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>3</td>
+      <td>5</td>
+      <td>0</td>
+      <td>11</td>
+      <td>2</td>
+      <td>11.18</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>82.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>16.85</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>96.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>24.53</td>
+      <td>9</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>95.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>4</td>
+      <td>18</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>19.33</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>84.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>193</th>
+      <td>1</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>11.10</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>25.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>7.60</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>58.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>251</th>
+      <td>3</td>
+      <td>9</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>20.06</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>54.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>254</th>
+      <td>1</td>
+      <td>13</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>4.63</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>25.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>3</td>
+      <td>5</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>15.97</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>56.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>8.38</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>81.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>287</th>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>8.83</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>69.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>0</td>
+      <td>25</td>
+      <td>0</td>
+      <td>9</td>
+      <td>1</td>
+      <td>7.94</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>23.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>329</th>
+      <td>3</td>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>22.26</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>47.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>360</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>9</td>
+      <td>1</td>
+      <td>8.94</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>99.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>381</th>
+      <td>1</td>
+      <td>10</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>8.13</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>60.8</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0</td>
+      <td>11.45</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>38.1</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>403</th>
+      <td>3</td>
+      <td>9</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>13.92</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>74.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>416</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0</td>
+      <td>5.48</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>65.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>445</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>8</td>
+      <td>1</td>
+      <td>9.46</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>68.1</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>475</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>16.72</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>75.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>514</th>
+      <td>3</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>13.92</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>64.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>524</th>
+      <td>3</td>
+      <td>23</td>
+      <td>0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>15.70</td>
+      <td>11</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>82.6</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>555</th>
+      <td>3</td>
+      <td>9</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>19.95</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>89.8</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>559</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>18.29</td>
+      <td>8</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>95.8</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>593</th>
+      <td>1</td>
+      <td>24</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>3.97</td>
+      <td>9</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>600</th>
+      <td>5</td>
+      <td>8</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>18.02</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>89.6</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>625</th>
+      <td>4</td>
+      <td>19</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>9.60</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>57.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>659</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>1</td>
+      <td>19.03</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>74.6</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>669</th>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>9</td>
+      <td>0</td>
+      <td>15.87</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>57.6</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>680</th>
+      <td>5</td>
+      <td>26</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>15.72</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>74.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>121762</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>10</td>
+      <td>1</td>
+      <td>22.50</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>29.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121784</th>
+      <td>4</td>
+      <td>18</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>13.80</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>58.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121839</th>
+      <td>4</td>
+      <td>16</td>
+      <td>0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>19.62</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>73.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121863</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>27.43</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>62.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121905</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6.20</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>27.8</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121919</th>
+      <td>3</td>
+      <td>23</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>7.23</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>34.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121936</th>
+      <td>1</td>
+      <td>13</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>17.12</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>33.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121948</th>
+      <td>1</td>
+      <td>13</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>14.99</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>35.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121965</th>
+      <td>0</td>
+      <td>25</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>6.27</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>51.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121976</th>
+      <td>1</td>
+      <td>13</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>12.44</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>52.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121983</th>
+      <td>3</td>
+      <td>23</td>
+      <td>0</td>
+      <td>6</td>
+      <td>1</td>
+      <td>18.09</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>23.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>121986</th>
+      <td>0</td>
+      <td>25</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>12.78</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>60.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122002</th>
+      <td>4</td>
+      <td>20</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>11.15</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>92.6</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122037</th>
+      <td>4</td>
+      <td>16</td>
+      <td>0</td>
+      <td>9</td>
+      <td>1</td>
+      <td>14.94</td>
+      <td>7</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>64.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122111</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7</td>
+      <td>1</td>
+      <td>13.20</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>14.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122114</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>22.74</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>88.1</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122133</th>
+      <td>3</td>
+      <td>9</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0</td>
+      <td>2.72</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>45.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122140</th>
+      <td>5</td>
+      <td>15</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2</td>
+      <td>4.25</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>20.2</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122219</th>
+      <td>3</td>
+      <td>11</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>27.12</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>17.0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122225</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>24.01</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>66.4</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122232</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>19.24</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>40.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122254</th>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>27.39</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>95.0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122282</th>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>23.54</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>40.9</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122331</th>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>5.85</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>37.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122335</th>
+      <td>4</td>
+      <td>19</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>24.15</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>79.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122390</th>
+      <td>4</td>
+      <td>16</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+      <td>19.76</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>70.1</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122419</th>
+      <td>4</td>
+      <td>16</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>15.70</td>
+      <td>9</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>38.7</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122445</th>
+      <td>0</td>
+      <td>25</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.56</td>
+      <td>11</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>55.3</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122461</th>
+      <td>5</td>
+      <td>12</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>6.93</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>28.1</td>
+      <td>15.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>122480</th>
+      <td>1</td>
+      <td>21</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.00</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>13.5</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>4610 rows × 13 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_validation_data_risky</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[47]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_validation_data_risky</span> <span class="o">=</span> <span class="n">validation_risky_loans</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">sample_validation_data_safe</span> <span class="o">=</span> <span class="n">validation_safe_loans</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">small_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_validation_data_safe</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_validation_data_risky</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1 1]
+[1 1]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">decision_tree_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_validation_data_safe</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decision_tree_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_validation_data_risky</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1 1]
+[-1  1]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_validation_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sample_validation_data_safe</span><span class="p">,</span> <span class="n">sample_validation_data_risky</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decision_tree_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">sample_validation_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.35600948, 0.64399052],
+       [0.4331307 , 0.5668693 ],
+       [0.8018018 , 0.1981982 ],
+       [0.4331307 , 0.5668693 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_validation_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[51]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>19    1
+79    1
+24   -1
+41   -1
+Name: safe_loans, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">sample_validation_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[52]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.4632202, 0.5367798],
+       [0.4632202, 0.5367798],
+       [0.4632202, 0.5367798],
+       [0.4632202, 0.5367798]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">visualize_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create tree png using graphviz.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    tree -- scikit-learn DecsisionTree.</span>
+<span class="sd">    feature_names -- list of feature names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_name</span><span class="o">+</span><span class="s2">&quot;.dot&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">export_graphviz</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>
+                        <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+
+    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dot&quot;</span><span class="p">,</span> <span class="s2">&quot;-Tpng&quot;</span><span class="p">,</span> <span class="s2">&quot;dt.dot&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;dt.png&quot;</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Could not run dot, ie graphviz, to &quot;</span>
+             <span class="s2">&quot;produce visualization&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualize_tree</span><span class="p">(</span><span class="n">small_model</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s2">&quot;small_model&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualize_tree</span><span class="p">(</span><span class="n">decision_tree_model</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s2">&quot;decision_tree_model&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_validation_data</span><span class="p">[[</span><span class="s1">&#39;grade&#39;</span><span class="p">,</span> <span class="s1">&#39;sub_grade&#39;</span><span class="p">,</span><span class="n">target</span><span class="p">]]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[61]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>grade</th>
+      <th>sub_grade</th>
+      <th>safe_loans</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>3</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>1</td>
+      <td>1</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[69]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.47824213700990953</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decision_tree_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[70]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5052778974579922</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">big_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[71]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5192804825506248</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_model_predictions</span> <span class="o">=</span> <span class="n">small_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">big_model_predictions</span> <span class="o">=</span> <span class="n">big_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">decision_tree_model_predictions</span> <span class="o">=</span> <span class="n">decision_tree_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">true_labels</span> <span class="o">=</span> <span class="n">val_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">small_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">big_fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">big_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">dt_fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">decision_tree_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_fn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">small_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">big_fn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">big_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">dt_fn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">decision_tree_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">small_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">big_tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">big_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">dt_tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">decision_tree_model_predictions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_tn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">small_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">big_tn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">big_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">dt_tn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">decision_tree_model_predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_recall</span><span class="p">(</span><span class="n">tp</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_precision</span><span class="p">(</span><span class="n">tp</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_f1_score</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_recall</span> <span class="o">=</span> <span class="n">get_recall</span><span class="p">(</span><span class="n">small_tp</span><span class="p">,</span> <span class="n">small_fn</span><span class="p">)</span>
+<span class="n">small_precision</span> <span class="o">=</span> <span class="n">get_precision</span><span class="p">(</span><span class="n">small_tp</span><span class="p">,</span> <span class="n">small_fp</span><span class="p">)</span>
+<span class="n">small_f1</span> <span class="o">=</span> <span class="n">get_precision</span><span class="p">(</span><span class="n">small_precision</span><span class="p">,</span> <span class="n">small_recall</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[91]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4685821697099893</pre>
 </div>
 
 </div>
