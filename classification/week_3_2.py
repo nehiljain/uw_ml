@@ -21,38 +21,38 @@ from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 
 
-# In[2]:
+# In[ ]:
 
 
 loan_data = pd.read_csv('../data/lending-club-data.csv')
 
 
-# In[3]:
+# In[ ]:
 
 
 loan_data.shape
 
 
-# In[4]:
+# In[ ]:
 
 
 loan_data.head()
 
 
-# In[5]:
+# In[ ]:
 
 
 loan_data['safe_loans'] = np.where(loan_data.bad_loans == 0, 1, -1)
 
 
-# In[6]:
+# In[ ]:
 
 
 loan_data.safe_loans.value_counts()
 loan_data = loan_data.drop(['bad_loans'], axis=1)
 
 
-# In[7]:
+# In[ ]:
 
 
 features = ['grade',              # grade of the loan
@@ -63,19 +63,19 @@ features = ['grade',              # grade of the loan
 target = 'safe_loans'
 
 
-# In[8]:
+# In[ ]:
 
 
 loan_data = loan_data[features + [target]]
 
 
-# In[9]:
+# In[ ]:
 
 
 loan_data.head()
 
 
-# In[10]:
+# In[ ]:
 
 
 def encode_target(df, target_column):
@@ -100,7 +100,7 @@ def encode_target(df, target_column):
     return (df_mod, targets)
 
 
-# In[11]:
+# In[ ]:
 
 
 def get_one_hot_encoding_for_categorical_variables(df):
@@ -112,32 +112,32 @@ def get_one_hot_encoding_for_categorical_variables(df):
     return df
 
 
-# In[12]:
+# In[ ]:
 
 
 loans_df = get_one_hot_encoding_for_categorical_variables(loan_data)
 
 
-# In[13]:
+# In[ ]:
 
 
 print(loan_data.shape, loans_df.shape)
 
 
-# In[14]:
+# In[ ]:
 
 
 train_indexes = pd.read_json('../data/module-5-assignment-2-train-idx.json')
 test_indexes = pd.read_json('../data/module-5-assignment-2-test-idx.json')
 
 
-# In[15]:
+# In[ ]:
 
 
 print(train_indexes.shape, test_indexes.shape)
 
 
-# In[16]:
+# In[ ]:
 
 
 train_data = loans_df.iloc[train_indexes[0].tolist()]
@@ -150,7 +150,7 @@ test_data = loans_df.iloc[test_indexes[0].tolist()]
 # - Step 2: Since we are assuming majority class prediction, all the data points that are not in the majority class are considered mistakes.
 # - Step 3: Return the number of mistake
 
-# In[17]:
+# In[ ]:
 
 
 def intermediate_node_num_mistakes(labels_in_node):
@@ -166,7 +166,7 @@ def intermediate_node_num_mistakes(labels_in_node):
         return counts_dict[-1]
 
 
-# In[18]:
+# In[ ]:
 
 
 # Test case 1
@@ -180,4 +180,53 @@ assert intermediate_node_num_mistakes(example_labels2) == 2, 'Test 2 failed... t
 # Test case 3
 example_labels = [-1, -1, -1, -1, -1, 1, 1]
 assert intermediate_node_num_mistakes(example_labels) == 2, 'Test 3 failed... try again!'
+
+
+# In[2]:
+
+
+def best_splitting_feature(data, features, target):    
+    target_values = data[target]
+    best_feature = None 
+    best_error = 2     
+
+    num_data_points = float(len(data))  
+    
+    for feature in features:
+        
+        left_split = data[data[feature] == 0]       
+        right_split = data[data[feature] == 1] 
+            
+        # Calculate the number of misclassified examples in the left split.
+        left_mistakes = intermediate_node_num_mistakes(left_split.target.as_matrix())
+        right_mistakes = intermediate_node_num_mistakes(right_split.target.as_matrix())
+
+        error = (left_mistakes + right_mistakes)/num_data_points
+
+        if error < best_error:
+            best_error = error
+            best_feature = feature
+    
+    return best_feature 
+
+
+# In[3]:
+
+
+def create_leaf(target_values):    
+    leaf = {'splitting_feature' : None,
+            'left' : None,
+            'right' : None,
+            'is_leaf': True 
+           }
+   
+    num_ones = len(target_values[target_values == +1])
+    num_minus_ones = len(target_values[target_values == -1])    
+
+    if num_ones > num_minus_ones:
+        leaf['prediction'] = 1  
+    else:
+        leaf['prediction'] =  -1
+        
+    return leaf
 

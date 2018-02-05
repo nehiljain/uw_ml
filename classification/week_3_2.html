@@ -11797,19 +11797,6 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/lending-club-data.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -11819,10 +11806,18 @@ div#notebook {
 <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/nehiljain/.pyenv/versions/3.4.6/envs/py34/lib/python3.4/site-packages/IPython/core/interactiveshell.py:2728: DtypeWarning: Columns (19,47) have mixed types. Specify dtype option on import or set low_memory=False.
-  interactivity=interactivity, compiler=compiler, result=result)
-</pre>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-f8ae292ed6dd&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     10</span> <span class="ansi-green-fg">import</span> json
+<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-green-fg">import</span> string
+<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>feature_extraction<span class="ansi-blue-fg">.</span>text <span class="ansi-green-fg">import</span> CountVectorizer
+<span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-green-fg">from</span> sklearn <span class="ansi-green-fg">import</span> linear_model
+<span class="ansi-green-intense-fg ansi-bold">     14</span> <span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>model_selection <span class="ansi-green-fg">import</span> cross_val_score
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;</pre>
 </div>
 </div>
 
@@ -11832,7 +11827,20 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/lending-club-data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">shape</span>
@@ -11842,30 +11850,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(122607, 68)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -11875,194 +11863,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[4]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>member_id</th>
-      <th>loan_amnt</th>
-      <th>funded_amnt</th>
-      <th>funded_amnt_inv</th>
-      <th>term</th>
-      <th>int_rate</th>
-      <th>installment</th>
-      <th>grade</th>
-      <th>sub_grade</th>
-      <th>...</th>
-      <th>sub_grade_num</th>
-      <th>delinq_2yrs_zero</th>
-      <th>pub_rec_zero</th>
-      <th>collections_12_mths_zero</th>
-      <th>short_emp</th>
-      <th>payment_inc_ratio</th>
-      <th>final_d</th>
-      <th>last_delinq_none</th>
-      <th>last_record_none</th>
-      <th>last_major_derog_none</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1077501</td>
-      <td>1296599</td>
-      <td>5000</td>
-      <td>5000</td>
-      <td>4975</td>
-      <td>36 months</td>
-      <td>10.65</td>
-      <td>162.87</td>
-      <td>B</td>
-      <td>B2</td>
-      <td>...</td>
-      <td>0.4</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>8.14350</td>
-      <td>20141201T000000</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1077430</td>
-      <td>1314167</td>
-      <td>2500</td>
-      <td>2500</td>
-      <td>2500</td>
-      <td>60 months</td>
-      <td>15.27</td>
-      <td>59.83</td>
-      <td>C</td>
-      <td>C4</td>
-      <td>...</td>
-      <td>0.8</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>2.39320</td>
-      <td>20161201T000000</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1077175</td>
-      <td>1313524</td>
-      <td>2400</td>
-      <td>2400</td>
-      <td>2400</td>
-      <td>36 months</td>
-      <td>15.96</td>
-      <td>84.33</td>
-      <td>C</td>
-      <td>C5</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>8.25955</td>
-      <td>20141201T000000</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1076863</td>
-      <td>1277178</td>
-      <td>10000</td>
-      <td>10000</td>
-      <td>10000</td>
-      <td>36 months</td>
-      <td>13.49</td>
-      <td>339.31</td>
-      <td>C</td>
-      <td>C1</td>
-      <td>...</td>
-      <td>0.2</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>8.27585</td>
-      <td>20141201T000000</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1075269</td>
-      <td>1311441</td>
-      <td>5000</td>
-      <td>5000</td>
-      <td>5000</td>
-      <td>36 months</td>
-      <td>7.90</td>
-      <td>156.46</td>
-      <td>A</td>
-      <td>A4</td>
-      <td>...</td>
-      <td>0.8</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>5.21533</td>
-      <td>20141201T000000</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 68 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="p">[</span><span class="s1">&#39;safe_loans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">loan_data</span><span class="o">.</span><span class="n">bad_loans</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12075,7 +11879,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">safe_loans</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -12089,7 +11893,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">,</span>              <span class="c1"># grade of the loan</span>
@@ -12107,7 +11911,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span> <span class="o">=</span> <span class="n">loan_data</span><span class="p">[</span><span class="n">features</span> <span class="o">+</span> <span class="p">[</span><span class="n">target</span><span class="p">]]</span>
@@ -12120,7 +11924,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loan_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12130,97 +11934,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[9]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>grade</th>
-      <th>term</th>
-      <th>home_ownership</th>
-      <th>emp_length</th>
-      <th>safe_loans</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>B</td>
-      <td>36 months</td>
-      <td>RENT</td>
-      <td>10+ years</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>C</td>
-      <td>60 months</td>
-      <td>RENT</td>
-      <td>&lt; 1 year</td>
-      <td>-1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C</td>
-      <td>36 months</td>
-      <td>RENT</td>
-      <td>10+ years</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>C</td>
-      <td>36 months</td>
-      <td>RENT</td>
-      <td>10+ years</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>A</td>
-      <td>36 months</td>
-      <td>RENT</td>
-      <td>3 years</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">encode_target</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
@@ -12252,7 +11969,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_one_hot_encoding_for_categorical_variables</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -12271,7 +11988,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loans_df</span> <span class="o">=</span> <span class="n">get_one_hot_encoding_for_categorical_variables</span><span class="p">(</span><span class="n">loan_data</span><span class="p">)</span>
@@ -12284,7 +12001,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loan_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">loans_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -12294,28 +12011,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(122607, 5) (122607, 5)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_indexes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;../data/module-5-assignment-2-train-idx.json&#39;</span><span class="p">)</span>
@@ -12329,7 +12028,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">train_indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_indexes</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -12339,28 +12038,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(37224, 1) (9284, 1)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">loans_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
@@ -12388,7 +12069,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_node_num_mistakes</span><span class="p">(</span><span class="n">labels_in_node</span><span class="p">):</span>
@@ -12411,7 +12092,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test case 1</span>
@@ -12425,6 +12106,69 @@ div#notebook {
 <span class="c1"># Test case 3</span>
 <span class="n">example_labels</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="k">assert</span> <span class="n">intermediate_node_num_mistakes</span><span class="p">(</span><span class="n">example_labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Test 3 failed... try again!&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">best_splitting_feature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>    
+    <span class="n">target_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+    <span class="n">best_feature</span> <span class="o">=</span> <span class="kc">None</span> 
+    <span class="n">best_error</span> <span class="o">=</span> <span class="mi">2</span>     
+
+    <span class="n">num_data_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>  
+    
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+        
+        <span class="n">left_split</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>       
+        <span class="n">right_split</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> 
+            
+        <span class="c1"># Calculate the number of misclassified examples in the left split.</span>
+        <span class="n">left_mistakes</span> <span class="o">=</span> <span class="n">intermediate_node_num_mistakes</span><span class="p">(</span><span class="n">left_split</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">())</span>
+        <span class="n">right_mistakes</span> <span class="o">=</span> <span class="n">intermediate_node_num_mistakes</span><span class="p">(</span><span class="n">right_split</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">())</span>
+
+        <span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_mistakes</span> <span class="o">+</span> <span class="n">right_mistakes</span><span class="p">)</span><span class="o">/</span><span class="n">num_data_points</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">error</span>
+            <span class="n">best_feature</span> <span class="o">=</span> <span class="n">feature</span>
+    
+    <span class="k">return</span> <span class="n">best_feature</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">create_leaf</span><span class="p">(</span><span class="n">target_values</span><span class="p">):</span>    
+    <span class="n">leaf</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;splitting_feature&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;left&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;right&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;is_leaf&#39;</span><span class="p">:</span> <span class="kc">True</span> 
+           <span class="p">}</span>
+   
+    <span class="n">num_ones</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_values</span><span class="p">[</span><span class="n">target_values</span> <span class="o">==</span> <span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">num_minus_ones</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_values</span><span class="p">[</span><span class="n">target_values</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>    
+
+    <span class="k">if</span> <span class="n">num_ones</span> <span class="o">&gt;</span> <span class="n">num_minus_ones</span><span class="p">:</span>
+        <span class="n">leaf</span><span class="p">[</span><span class="s1">&#39;prediction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">leaf</span><span class="p">[</span><span class="s1">&#39;prediction&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="o">-</span><span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">leaf</span>
 </pre></div>
 
 </div>
