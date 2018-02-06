@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[37]:
+# In[1]:
 
 
 import sys, os
@@ -21,38 +21,38 @@ from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 
 
-# In[38]:
+# In[2]:
 
 
 loan_data = pd.read_csv('../data/lending-club-data.csv')
 
 
-# In[39]:
+# In[3]:
 
 
 loan_data.shape
 
 
-# In[40]:
+# In[4]:
 
 
 loan_data.head()
 
 
-# In[41]:
+# In[5]:
 
 
 loan_data['safe_loans'] = np.where(loan_data.bad_loans == 0, 1, -1)
 
 
-# In[42]:
+# In[6]:
 
 
 loan_data.safe_loans.value_counts()
 loan_data = loan_data.drop(['bad_loans'], axis=1)
 
 
-# In[43]:
+# In[7]:
 
 
 features = ['grade',              # grade of the loan
@@ -63,19 +63,19 @@ features = ['grade',              # grade of the loan
 target = 'safe_loans'
 
 
-# In[44]:
+# In[8]:
 
 
 loan_data = loan_data[features + [target]]
 
 
-# In[45]:
+# In[9]:
 
 
 loan_data.head()
 
 
-# In[46]:
+# In[10]:
 
 
 def encode_target(df, target_column):
@@ -100,7 +100,7 @@ def encode_target(df, target_column):
     return (df_mod, targets)
 
 
-# In[47]:
+# In[11]:
 
 
 def get_one_hot_encoding_for_categorical_variables(df):
@@ -112,13 +112,13 @@ def get_one_hot_encoding_for_categorical_variables(df):
     return df
 
 
-# In[48]:
+# In[12]:
 
 
 loans_df = pd.get_dummies(loan_data, columns=features)
 
 
-# In[51]:
+# In[13]:
 
 
 features = list(loans_df.columns.values)
@@ -126,26 +126,26 @@ features.remove(target)
 features
 
 
-# In[52]:
+# In[14]:
 
 
 print(loan_data.shape, loans_df.shape)
 
 
-# In[53]:
+# In[15]:
 
 
 train_indexes = pd.read_json('../data/module-5-assignment-2-train-idx.json')
 test_indexes = pd.read_json('../data/module-5-assignment-2-test-idx.json')
 
 
-# In[54]:
+# In[16]:
 
 
 print(train_indexes.shape, test_indexes.shape)
 
 
-# In[55]:
+# In[17]:
 
 
 train_data = loans_df.iloc[train_indexes[0].tolist()]
@@ -158,7 +158,7 @@ test_data = loans_df.iloc[test_indexes[0].tolist()]
 # - Step 2: Since we are assuming majority class prediction, all the data points that are not in the majority class are considered mistakes.
 # - Step 3: Return the number of mistake
 
-# In[56]:
+# In[18]:
 
 
 def intermediate_node_num_mistakes(labels_in_node):
@@ -174,7 +174,7 @@ def intermediate_node_num_mistakes(labels_in_node):
         return counts_dict[-1]
 
 
-# In[57]:
+# In[19]:
 
 
 # Test case 1
@@ -190,7 +190,7 @@ example_labels = [-1, -1, -1, -1, -1, 1, 1]
 assert intermediate_node_num_mistakes(example_labels) == 2, 'Test 3 failed... try again!'
 
 
-# In[58]:
+# In[20]:
 
 
 def best_splitting_feature(data, features, target):    
@@ -218,7 +218,7 @@ def best_splitting_feature(data, features, target):
     return best_feature 
 
 
-# In[59]:
+# In[21]:
 
 
 def create_leaf(target_values):    
@@ -239,7 +239,7 @@ def create_leaf(target_values):
     return leaf
 
 
-# In[60]:
+# In[22]:
 
 
 def decision_tree_create(data, features, target, current_depth = 0, max_depth = 10):
@@ -288,7 +288,7 @@ def decision_tree_create(data, features, target, current_depth = 0, max_depth = 
               
 
 
-# In[61]:
+# In[23]:
 
 
 def count_nodes(tree):
@@ -309,13 +309,13 @@ else:
     print('Number of nodes that should be there : 13')
 
 
-# In[63]:
+# In[24]:
 
 
 my_decision_tree = decision_tree_create(train_data, features, 'safe_loans', max_depth= 6)
 
 
-# In[64]:
+# In[26]:
 
 
 def classify(tree, x, annotate = False):
@@ -333,26 +333,26 @@ def classify(tree, x, annotate = False):
             return classify(tree['left'], x, annotate)
 
 
-# In[69]:
+# In[27]:
 
 
 test_data.iloc[0]
 
 
-# In[70]:
+# In[28]:
 
 
 print(test_data.iloc[0])
 print('Predicted class: %s ' % classify(my_decision_tree, test_data.iloc[0]))
 
 
-# In[72]:
+# In[29]:
 
 
 classify(my_decision_tree, test_data.iloc[0], annotate=True)
 
 
-# In[88]:
+# In[30]:
 
 
 def evaluate_classification_error(tree, data):
@@ -372,13 +372,13 @@ def evaluate_classification_error(tree, data):
     return error
 
 
-# In[89]:
+# In[31]:
 
 
 evaluate_classification_error(my_decision_tree, test_data)
 
 
-# In[ ]:
+# In[35]:
 
 
 def print_stump(tree, name = 'root'):
@@ -386,17 +386,22 @@ def print_stump(tree, name = 'root'):
     if split_name is None:
         print("(leaf, label: %s)" % tree['prediction'])
         return None
-    split_feature, split_value = split_name.split('.')
+    split_feature, split_value = split_name.split('_')
     print('                       %s' % name)
     print('         |---------------|----------------|')
-    print('         |                                |'
-    print('         |                                |'
-    print'         |                                |'
-    print '  [{0} == 0]               [{0} == 1]    '.format(split_name)
-    print '         |                                |'
-    print '         |                                |'
-    print '         |                                |'
-    print '    (%s)                         (%s)' \
-        % (('leaf, label: ' + str(tree['left']['prediction']) if tree['left']['is_leaf'] else 'subtree'),
-           ('leaf, label: ' + str(tree['right']['prediction']) if tree['right']['is_leaf'] else 'subtree'))
+    print('         |                                |')
+    print('         |                                |')
+    print('         |                                |')
+    print('  [{0} == 0]               [{0} == 1]    '.format(split_name))
+    print('         |                                |')
+    print('         |                                |')
+    print('         |                                |')
+    print('    (%s)                         (%s)'         % (('leaf, label: ' + str(tree['left']['prediction']) if tree['left']['is_leaf'] else 'subtree'),
+           ('leaf, label: ' + str(tree['right']['prediction']) if tree['right']['is_leaf'] else 'subtree')))
+
+
+# In[37]:
+
+
+print_stump(my_decision_tree['right'], my_decision_tree['splitting_feature'])
 
