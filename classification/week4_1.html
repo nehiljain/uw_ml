@@ -12602,6 +12602,36 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">count_leaves</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">tree</span><span class="p">[</span><span class="s1">&#39;is_leaf&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">tree</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">tree</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">my_decision_tree_new</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> 
+                                <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -12611,12 +12641,1080 @@ div#notebook {
 <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-23-db8599cc0bda&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">5</span>
-<span class="ansi-red-fg">    min_error_reduction0.0):</span>
-                         ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">my_decision_tree_old</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicted class: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">classify</span><span class="p">(</span><span class="n">my_decision_tree_new</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>safe_loans                -1
+grade_A                    0
+grade_B                    0
+grade_C                    0
+grade_D                    1
+grade_E                    0
+grade_F                    0
+grade_G                    0
+term_ 36 months            0
+term_ 60 months            1
+home_ownership_MORTGAGE    0
+home_ownership_OTHER       0
+home_ownership_OWN         0
+home_ownership_RENT        1
+emp_length_1 year          0
+emp_length_10+ years       0
+emp_length_2 years         1
+emp_length_3 years         0
+emp_length_4 years         0
+emp_length_5 years         0
+emp_length_6 years         0
+emp_length_7 years         0
+emp_length_8 years         0
+emp_length_9 years         0
+emp_length_&lt; 1 year        0
+Name: 24, dtype: int64
+Predicted class: -1 
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classify</span><span class="p">(</span><span class="n">my_decision_tree_new</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">annotate</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Split on term_ 36 months = 0
+Split on grade_A = 0
+At leaf, predicting -1
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classify</span><span class="p">(</span><span class="n">my_decision_tree_old</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">annotate</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Split on term_ 36 months = 0
+Split on grade_A = 0
+At leaf, predicting -1
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">my_decision_tree_new</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.496553209823352</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">my_decision_tree_old</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.496553209823352</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_1</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_2</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_3</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_4</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_5</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">model_6</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">model_7</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_8</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_9</span> <span class="o">=</span> <span class="n">decision_tree_create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;safe_loans&#39;</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">min_node_size</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">min_error_reduction</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Reached max_depth = 2
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Reached max_depth = 2
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Reached max_depth = 2
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Reached max_depth = 2
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Split on feature grade_A. (9318, 5029)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Split on feature grade_A. (97, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Split on feature emp_length_4 years. (3969, 334)
+--------------------------------------------------------------------
+Subtree, depth = 7 (3969 data points).
+Split on feature home_ownership_OTHER. (3957, 12)
+--------------------------------------------------------------------
+Subtree, depth = 8 (3957 data points).
+Split on feature emp_length_9 years. (3828, 129)
+--------------------------------------------------------------------
+Subtree, depth = 9 (3828 data points).
+Split on feature emp_length_2 years. (3312, 516)
+--------------------------------------------------------------------
+Subtree, depth = 10 (3312 data points).
+Split on feature grade_A. (3312, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 10 (516 data points).
+Split on feature home_ownership_OWN. (458, 58)
+--------------------------------------------------------------------
+Subtree, depth = 11 (458 data points).
+Split on feature grade_A. (458, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 11 (58 data points).
+Split on feature grade_A. (58, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 9 (129 data points).
+Split on feature home_ownership_OWN. (113, 16)
+--------------------------------------------------------------------
+Subtree, depth = 10 (113 data points).
+Split on feature grade_A. (113, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 10 (16 data points).
+Split on feature grade_A. (16, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 8 (12 data points).
+Split on feature emp_length_6 years. (11, 1)
+--------------------------------------------------------------------
+Subtree, depth = 9 (11 data points).
+Split on feature grade_A. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 9 (1 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 7 (334 data points).
+Split on feature grade_A. (334, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Split on feature emp_length_2 years. (2689, 230)
+--------------------------------------------------------------------
+Subtree, depth = 7 (2689 data points).
+Split on feature emp_length_5 years. (2462, 227)
+--------------------------------------------------------------------
+Subtree, depth = 8 (2462 data points).
+Split on feature grade_A. (2462, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 8 (227 data points).
+Split on feature grade_A. (227, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 7 (230 data points).
+Split on feature grade_A. (230, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Split on feature grade_A. (9, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Split on feature term_ 36 months. (9223, 28001)
+--------------------------------------------------------------------
+Subtree, depth = 1 (9223 data points).
+Split on feature grade_A. (9122, 101)
+--------------------------------------------------------------------
+Subtree, depth = 2 (9122 data points).
+Split on feature grade_B. (8074, 1048)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (101 data points).
+Split on feature emp_length_&lt; 1 year. (90, 11)
+--------------------------------------------------------------------
+Subtree, depth = 3 (90 data points).
+Split on feature grade_B. (90, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 3 (11 data points).
+Split on feature grade_B. (11, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 1 (28001 data points).
+Split on feature grade_D. (23300, 4701)
+--------------------------------------------------------------------
+Subtree, depth = 2 (23300 data points).
+Split on feature grade_E. (22024, 1276)
+--------------------------------------------------------------------
+Subtree, depth = 3 (22024 data points).
+Split on feature grade_F. (21666, 358)
+--------------------------------------------------------------------
+Subtree, depth = 4 (21666 data points).
+Split on feature grade_C. (14444, 7222)
+--------------------------------------------------------------------
+Subtree, depth = 5 (14444 data points).
+Split on feature grade_G. (14347, 97)
+--------------------------------------------------------------------
+Subtree, depth = 6 (14347 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (97 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 5 (7222 data points).
+Split on feature home_ownership_MORTGAGE. (4303, 2919)
+--------------------------------------------------------------------
+Subtree, depth = 6 (4303 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2919 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 4 (358 data points).
+Split on feature emp_length_8 years. (347, 11)
+--------------------------------------------------------------------
+Subtree, depth = 5 (347 data points).
+Split on feature grade_A. (347, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 5 (11 data points).
+Split on feature home_ownership_OWN. (9, 2)
+--------------------------------------------------------------------
+Subtree, depth = 6 (9 data points).
+Reached max_depth = 6
+--------------------------------------------------------------------
+Subtree, depth = 6 (2 data points).
+Stopping condition 1 reached.
+--------------------------------------------------------------------
+Subtree, depth = 3 (1276 data points).
+Split on feature grade_A. (1276, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 2 (4701 data points).
+Split on feature grade_A. (4701, 0)
+Early stopping condition min reduction
+--------------------------------------------------------------------
+Subtree, depth = 0 (37224 data points).
+Reached early stopping condition2 min node size
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 1):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_1</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 2):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_2</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 3):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_3</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 4):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_4</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 5):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_5</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 6):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_6</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 7):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_7</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 8):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_8</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training data, classification error (model 9):&quot;</span><span class="p">,</span> <span class="n">evaluate_classification_error</span><span class="p">(</span><span class="n">model_9</span><span class="p">,</span> <span class="n">train_data</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Training data, classification error (model 1): 0.5036535568450462
+Training data, classification error (model 2): 0.5036535568450462
+Training data, classification error (model 3): 0.5036535568450462
+Training data, classification error (model 4): 0.5036535568450462
+Training data, classification error (model 5): 0.5036535568450462
+Training data, classification error (model 6): 0.4963464431549538
+Training data, classification error (model 7): 0.5036535568450462
+Training data, classification error (model 8): 0.5036535568450462
+Training data, classification error (model 9): 0.4963464431549538
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 1):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 2):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 3):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 4):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 5):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 6):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 7):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_7</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 8):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_8</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complexity of Tree (model 9):&quot;</span><span class="p">,</span> <span class="n">count_leaves</span><span class="p">(</span><span class="n">model_9</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Complexity of Tree (model 1): 4
+Complexity of Tree (model 2): 12
+Complexity of Tree (model 3): 21
+Complexity of Tree (model 4): 12
+Complexity of Tree (model 5): 12
+Complexity of Tree (model 6): 1
+Complexity of Tree (model 7): 12
+Complexity of Tree (model 8): 12
+Complexity of Tree (model 9): 1
 </pre>
 </div>
 </div>

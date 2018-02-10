@@ -281,3 +281,98 @@ def decision_tree_create(data, features, target,
             'right'            : right_tree}
               
 
+
+# In[36]:
+
+
+def count_leaves(tree):
+    if tree['is_leaf']:
+        return 1
+    return count_leaves(tree['left']) + count_leaves(tree['right'])
+
+
+# In[24]:
+
+
+my_decision_tree_new = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, 
+                                min_node_size = 100, min_error_reduction=0.0)
+
+
+# In[26]:
+
+
+my_decision_tree_old = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=-1)
+
+
+# In[31]:
+
+
+print(test_data.iloc[0])
+print('Predicted class: %s ' % classify(my_decision_tree_new, test_data.iloc[0]))
+
+
+# In[32]:
+
+
+classify(my_decision_tree_new, test_data.iloc[0], annotate = True)
+
+
+# In[33]:
+
+
+classify(my_decision_tree_old, test_data.iloc[0], annotate = True)
+
+
+# In[34]:
+
+
+evaluate_classification_error(my_decision_tree_new, test_data)
+
+
+# In[35]:
+
+
+evaluate_classification_error(my_decision_tree_old, test_data)
+
+
+# In[37]:
+
+
+model_1 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 2, min_node_size = 0, min_error_reduction=-1)
+model_2 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=-1)
+model_3 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 14, min_node_size = 0, min_error_reduction=-1)
+model_4 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=-1)
+model_5 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=0)
+model_6 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=5)
+model_7 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 0, min_error_reduction=-1)
+model_8 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 2000, min_error_reduction=-1)
+model_9 = decision_tree_create(train_data, features, 'safe_loans', max_depth = 6, min_node_size = 50000, min_error_reduction=-1)
+
+
+# In[38]:
+
+
+print("Training data, classification error (model 1):", evaluate_classification_error(model_1, train_data))
+print("Training data, classification error (model 2):", evaluate_classification_error(model_2, train_data))
+print("Training data, classification error (model 3):", evaluate_classification_error(model_3, train_data))
+print("Training data, classification error (model 4):", evaluate_classification_error(model_4, train_data))
+print("Training data, classification error (model 5):", evaluate_classification_error(model_5, train_data))
+print("Training data, classification error (model 6):", evaluate_classification_error(model_6, train_data))
+print("Training data, classification error (model 7):", evaluate_classification_error(model_7, train_data))
+print("Training data, classification error (model 8):", evaluate_classification_error(model_8, train_data))
+print("Training data, classification error (model 9):", evaluate_classification_error(model_9, train_data))
+
+
+# In[39]:
+
+
+print("Complexity of Tree (model 1):", count_leaves(model_1))
+print("Complexity of Tree (model 2):", count_leaves(model_2))
+print("Complexity of Tree (model 3):", count_leaves(model_3))
+print("Complexity of Tree (model 4):", count_leaves(model_4))
+print("Complexity of Tree (model 5):", count_leaves(model_5))
+print("Complexity of Tree (model 6):", count_leaves(model_6))
+print("Complexity of Tree (model 7):", count_leaves(model_7))
+print("Complexity of Tree (model 8):", count_leaves(model_8))
+print("Complexity of Tree (model 9):", count_leaves(model_9))
+
