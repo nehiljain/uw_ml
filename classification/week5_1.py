@@ -1,52 +1,33 @@
 
 # coding: utf-8
 
-# In[14]:
+# In[45]:
 
 
-import sys, os
-from collections import Counter
 import pandas as pd
-import matplotlib.pyplot as plt
-plt.style.use('classic')
-get_ipython().run_line_magic('matplotlib', 'inline')
 import numpy as np
-import pandas as pd
-import seaborn as sns
 import json
-import string
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn import linear_model
-from sklearn.model_selection import cross_val_score
-from sklearn.tree import DecisionTreeClassifier, export_graphviz
+import sklearn
+import sklearn.ensemble
+from sklearn.ensemble import GradientBoostingClassifier
 
 
-# In[15]:
+# In[46]:
 
 
-loan_data = pd.read_csv('../data/lending-club-data.csv')
+loans = pd.read_csv('../../uw_ml/data/lending-club-data.csv')
 
 
-# In[16]:
+# In[47]:
 
 
-loan_data.shape
+# safe_loans =  1 => safe
+# safe_loans = -1 => risky
+loans['safe_loans'] = loans['bad_loans'].apply(lambda x : +1 if x==0 else -1)
+loans = loans.drop('bad_loans', axis = 1)
 
 
-# In[17]:
-
-
-loan_data.columns.values
-
-
-# In[18]:
-
-
-loan_data['safe_loans'] = loan_data['bad_loans'].apply(lambda x : +1 if x==0 else -1)
-loan_data = loan_data.drop(columns='bad_loans')
-
-
-# In[19]:
+# In[48]:
 
 
 target = 'safe_loans'
@@ -77,40 +58,123 @@ features = ['grade',                     # grade of the loan (categorical)
            ]
 
 
-# In[20]:
+# In[49]:
 
 
-loan_data = loan_data[[target] + features]
+loans = loans[[target] + features].dropna()
 
 
-# In[21]:
+# In[50]:
 
 
-loan_data.shape
+loans = pd.get_dummies(loans)
 
 
-# In[22]:
+# In[51]:
 
 
-loan_data = loan_data.dropna()
+
+with open('../../uw_ml/data/module-8-assignment-1-train-idx.json', 'r') as f: # Reads the list of most frequent words
+    train_idx = json.load(f)
+with open('../../uw_ml/data/module-8-assignment-1-validation-idx.json', 'r') as f1: # Reads the list of most frequent words
+    validation_idx = json.load(f1)
 
 
-# In[23]:
+# In[52]:
 
 
-loan_data.shape
+train_data = loans.iloc[train_idx]
+validation_data = loans.iloc[validation_idx]
 
 
-# In[24]:
+# In[53]:
 
 
-train_indexes = pd.read_json('../data/module-8-assignment-1-train-idx.json')
-val_indexes = pd.read_json('../data/module-8-assignment-1-validation-idx.json')
+validation_safe_loans = validation_data[validation_data[target] == 1]
+validation_risky_loans = validation_data[validation_data[target] == -1]
+
+sample_validation_data_risky = validation_risky_loans[0:2]
+sample_validation_data_safe = validation_safe_loans[0:2]
+
+sample_validation_data = sample_validation_data_safe.append(sample_validation_data_risky)
+sample_validation_data
 
 
-# In[30]:
+# In[54]:
 
 
-train_data = loan_data.loc[train_indexes[0].tolist()]
-validation_data = loan_data.loc[val_indexes[0].tolist()]
+sample_model = GradientBoostingClassifier(n_estimators=5, max_depth=6)
+
+
+# In[55]:
+
+
+X = train_data.drop('safe_loans',1)
+
+
+# In[56]:
+
+
+np.any(np.isnan(X))
+
+
+# In[57]:
+
+
+sample_model.fit(X, train_data['safe_loans'])
+
+
+# In[58]:
+
+
+sample_model.predict(sample_validation_data.drop('safe_loans',1))
+
+
+# In[59]:
+
+
+sample_model.predict_proba(sample_validation_data.drop('safe_loans',1))
+
+
+# In[60]:
+
+
+sample_model.score(validation_data.drop('safe_loans',1), validation_data['safe_loans'])
+
+
+# In[61]:
+
+
+predict_safeloans = sample_model.predict(validation_data.drop('safe_loans',1))
+
+
+# In[62]:
+
+
+predict_safeloans
+
+
+# In[63]:
+
+
+sum(predict_safeloans > validation_data['safe_loans'])
+
+
+# In[64]:
+
+
+# false negative
+sum(predict_safeloans < validation_data['safe_loans'])
+
+
+# In[65]:
+
+
+validation_data['predictions'] = sample_model.predict_proba(validation_data.drop('safe_loans',1))[:,1]
+
+
+# In[67]:
+
+
+validation_data[['grade_A','grade_B','grade_C','grade_D','predictions']].sort_values('predictions', ascending = False).head(5)
 
