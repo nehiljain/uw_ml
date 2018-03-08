@@ -1,9 +1,4 @@
 
-# coding: utf-8
-
-# In[ ]:
-
-
 import pandas as pd
 import numpy as np
 import json
@@ -11,24 +6,12 @@ import sklearn
 import sklearn.ensemble
 from sklearn.ensemble import GradientBoostingClassifier
 
-
-# In[ ]:
-
-
 loans = pd.read_csv('../../uw_ml/data/lending-club-data.csv')
-
-
-# In[ ]:
-
 
 # safe_loans =  1 => safe
 # safe_loans = -1 => risky
 loans['safe_loans'] = loans['bad_loans'].apply(lambda x : +1 if x==0 else -1)
 loans = loans.drop('bad_loans', axis = 1)
-
-
-# In[ ]:
-
 
 target = 'safe_loans'
 features = ['grade',                     # grade of the loan (categorical)
@@ -57,21 +40,9 @@ features = ['grade',                     # grade of the loan (categorical)
             'installment',               # monthly payment owed by the borrower
            ]
 
-
-# In[ ]:
-
-
 loans = loans[[target] + features].dropna()
 
-
-# In[ ]:
-
-
 loans = pd.get_dummies(loans)
-
-
-# In[ ]:
-
 
 
 with open('../../uw_ml/data/module-8-assignment-1-train-idx.json', 'r') as f: # Reads the list of most frequent words
@@ -79,16 +50,8 @@ with open('../../uw_ml/data/module-8-assignment-1-train-idx.json', 'r') as f: # 
 with open('../../uw_ml/data/module-8-assignment-1-validation-idx.json', 'r') as f1: # Reads the list of most frequent words
     validation_idx = json.load(f1)
 
-
-# In[ ]:
-
-
 train_data = loans.iloc[train_idx]
 validation_data = loans.iloc[validation_idx]
-
-
-# In[ ]:
-
 
 validation_safe_loans = validation_data[validation_data[target] == 1]
 validation_risky_loans = validation_data[validation_data[target] == -1]
@@ -99,104 +62,42 @@ sample_validation_data_safe = validation_safe_loans[0:2]
 sample_validation_data = sample_validation_data_safe.append(sample_validation_data_risky)
 sample_validation_data
 
-
-# In[ ]:
-
-
 model_5 = GradientBoostingClassifier(n_estimators=5, 
                                           max_depth=6)
 
-
-# In[ ]:
-
-
 X = train_data.drop('safe_loans',1)
-
-
-# In[ ]:
-
 
 np.any(np.isnan(X))
 
-
-# In[ ]:
-
-
 model_5.fit(X, train_data['safe_loans'])
-
-
-# In[ ]:
-
 
 model_5.predict(sample_validation_data.drop('safe_loans',1))
 
-
-# In[ ]:
-
-
 model_5.predict_proba(sample_validation_data.drop('safe_loans',1))
-
-
-# In[ ]:
-
 
 model_5.score(validation_data.drop('safe_loans',1), validation_data['safe_loans'])
 
-
-# In[ ]:
-
-
 predict_safeloans = model_5.predict(validation_data.drop('safe_loans',1))
-
-
-# In[ ]:
-
 
 predict_safeloans
 
-
-# In[ ]:
-
-
 fp = sum(predict_safeloans > validation_data['safe_loans'])
 fp
-
-
-# In[ ]:
-
 
 # false negative
 fn = sum(predict_safeloans < validation_data['safe_loans'])
 fn
 
-
-# In[ ]:
-
-
 validation_data['predictions'] = model_5.predict_proba(validation_data.drop('safe_loans',1))[:,1]
-
-
-# In[ ]:
-
 
 assert sum((validation_data.predictions > 1) | (validation_data.predictions < 0)) == 0
 
-
-# In[ ]:
-
-
 validation_data[['grade_A','grade_B','grade_C','grade_D','predictions']].sort_values('predictions', ascending = False).head(5)
-
-
-# In[ ]:
-
 
 mistake_cost = (10000 * fn) + (20000 * fp)
 mistake_cost
 
-
-# In[ ]:
-
+validation_data.drop(columns='predictions', axis=1, inplace=True)
 
 models = {}
 val_prediction_data = validation_data.drop('safe_loans', 1)
@@ -208,51 +109,48 @@ for estimator in [5, 10,50,100,200,500]:
     predictions = model.predict(val_prediction_data)
     fn = sum(predictions < val_label_data)
     fp = sum(predictions > val_label_data)
+    score = model.score(val_prediction_data, val_label_data)
     models['model_' + str(estimator)] = {
         'model': model,
-        'fn': sum,
-        'fp': ,
-        'sample_predictions': model.predict(sample_validation_data.drop('safe_loans',1)),
-        ''
-    print()
+        'fn': fn,
+        'fp': fp,
+        'score': round(score,6),
+        'classification_error': (1 - score),
+        'sample_predictions': model.predict(sample_validation_data.drop('safe_loans',1))
+    }
+    print('Done training model_'+ str(estimator))
 
 
-# In[1]:
+# provided by assignment
+import matplotlib.pyplot as plt
+%matplotlib inline
+def make_figure(dim, title, xlabel, ylabel, legend):
+    plt.rcParams['figure.figsize'] = dim
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if legend is not None:
+        plt.legend(loc=legend, prop={'size':15})
+    plt.rcParams.update({'font.size': 16})
+    plt.tight_layout()
 
+training_errors = []
+val_errors = []
+for k,v in models.items():
+    print('VAL',k, v['score'])
+    val_errors.append(v['classification_error'])
+    model = v['model']
+    score = model.score(X, train_data['safe_loans'])
+    classification_error = 1 - score
+    training_errors.append(1 - score)
+    
+#     print(k, classification_error)
+    
 
-import numpy as np
-import pandas as pd
-import seaborn as sns
+plt.plot([5, 10, 50, 100, 200, 500], training_errors, linewidth=4.0, label='Training error')
+plt.plot([5, 10, 50, 100, 200, 500], val_errors, linewidth=4.0, label='Validation error')
 
-
-# In[2]:
-
-
-old_bid = pd.read_csv('/Users/nehiljain/Downloads/snaptravel_trivago_bids.csv', sep=';')
-
-
-# In[3]:
-
-
-new_bid = pd.read_csv('/Users/nehiljain/Downloads/snaptravel_trivago_bids_2018-03-07-21-00.csv', sep=';')
-
-
-# In[4]:
-
-
-new_bid.head()
-
-
-# In[ ]:
-
-
-sum(new_bid.US < old_bid.US)
-
-
-# In[ ]:
-
-
-sns.distplot(new_bid.US, hist=False, rug=True)
-sns.distplot(old_bid.US, hist=False, rug=True)
-sns.plt.show()
-
+make_figure(dim=(10,5), title='Error vs number of trees',
+            xlabel='Number of trees',
+            ylabel='Classification error',
+            legend='best')
