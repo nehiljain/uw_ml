@@ -11970,6 +11970,61 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If the data is identical in each feature, this function should return None</span>
+
+<span class="k">def</span> <span class="nf">best_splitting_feature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data_weights</span><span class="p">):</span>
+    
+    <span class="c1"># These variables will keep track of the best feature and the corresponding error</span>
+    <span class="n">best_feature</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_error</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;+inf&#39;</span><span class="p">)</span> 
+    <span class="n">num_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="c1"># Loop through each feature to consider splitting on that feature</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+        
+        <span class="c1"># The left split will have all data points where the feature value is 0</span>
+        <span class="c1"># The right split will have all data points where the feature value is 1</span>
+        <span class="n">left_split</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">right_split</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Apply the same filtering to data_weights to create left_data_weights, right_data_weights</span>
+        <span class="c1">## YOUR CODE HERE</span>
+        <span class="n">left_data_weights</span> <span class="o">=</span> <span class="n">data_weights</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">right_data_weights</span> <span class="o">=</span> <span class="n">data_weights</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+                    
+        <span class="c1"># DIFFERENT HERE</span>
+        <span class="c1"># Calculate the weight of mistakes for left and right sides</span>
+        <span class="c1">## YOUR CODE HERE</span>
+        <span class="n">left_weighted_mistakes</span><span class="p">,</span> <span class="n">left_class</span> <span class="o">=</span> <span class="n">intermediate_node_weighted_mistakes</span><span class="p">(</span><span class="n">left_split</span><span class="p">[</span><span class="n">target</span><span class="p">],</span>
+                                                                                <span class="n">left_data_weights</span><span class="p">)</span>
+        <span class="n">right_weighted_mistakes</span><span class="p">,</span> <span class="n">right_class</span> <span class="o">=</span> <span class="n">intermediate_node_weighted_mistakes</span><span class="p">(</span><span class="n">right_split</span><span class="p">[</span><span class="n">target</span><span class="p">],</span>
+                                                                                <span class="n">right_data_weights</span><span class="p">)</span>
+        
+        <span class="c1"># DIFFERENT HERE</span>
+        <span class="c1"># Compute weighted error by computing</span>
+        <span class="c1">#  ( [weight of mistakes (left)] + [weight of mistakes (right)] ) / [total weight of all data points]</span>
+        <span class="c1">## YOUR CODE HERE</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="o">...</span>
+        
+        <span class="c1"># If this is the best error we have found so far, store the feature and the error</span>
+        <span class="k">if</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span>
+            <span class="n">best_feature</span> <span class="o">=</span> <span class="n">feature</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">error</span>
+    
+    <span class="c1"># Return the best feature we found</span>
+    <span class="k">return</span> <span class="n">best_feature</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
     </div>
   </div>
 </body>
