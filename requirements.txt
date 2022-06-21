@@ -9,7 +9,7 @@ jupyter-console==5.2.0
 jupyter-core==4.4.0
 matplotlib==2.1.2
 numexpr==2.6.4
-numpy==1.14.0
+numpy==1.22.0
 pandas==0.22.0
 pandocfilters==1.4.2
 pytz==2017.3
